@@ -65,4 +65,3 @@ class Reader extends HiveObject {
     return 'Reader{readerId: $readerId, zoneId: $zoneId, deviceType: $deviceType}';
   }
 }
-

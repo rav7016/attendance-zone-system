@@ -104,4 +104,3 @@ class Card extends HiveObject {
     return 'Card{cardUid: $cardUid, personId: $personId, state: $state}';
   }
 }
-

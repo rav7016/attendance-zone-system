@@ -56,4 +56,3 @@ class Person extends HiveObject {
     return 'Person{personId: $personId, fullName: $fullName, primaryZoneId: $primaryZoneId}';
   }
 }
-

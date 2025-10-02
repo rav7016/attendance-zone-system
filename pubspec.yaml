@@ -63,11 +63,8 @@ dependencies:
   intl: ^0.19.0
   crypto: ^3.0.3
   
-  # Firebase for multi-user web deployment (temporarily disabled for web compilation)
-  # firebase_core: ^2.24.2
-  # cloud_firestore: ^4.13.6
-  # firebase_auth: ^4.15.3
-  # firebase_storage: ^11.5.6
+  # Keep current Hive system - it's already multi-user capable
+  # Cloud database can be added later when needed
 
 dev_dependencies:
   flutter_test:

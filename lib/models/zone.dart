@@ -50,4 +50,3 @@ class Zone extends HiveObject {
     return 'Zone{zoneId: $zoneId, zoneName: $zoneName, location: $location}';
   }
 }
-

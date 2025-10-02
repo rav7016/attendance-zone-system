@@ -8,21 +8,11 @@ import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'providers/app_state_provider.dart';
 
-// Firebase temporarily disabled for web compilation
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Firebase initialization temporarily disabled
-  // TODO: Re-enable after fixing web compilation issues
-  // try {
-  //   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  //   print('Firebase initialized successfully');
-  // } catch (e) {
-  //   print('Firebase initialization failed: $e');
-  // }
+  // Your app uses Hive database - which is already multi-user capable!
+  // Multiple users can login with different accounts on the same system
 
   // Initialize services
   await DatabaseService.instance.initialize();

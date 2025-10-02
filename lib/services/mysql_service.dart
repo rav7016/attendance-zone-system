@@ -10,20 +10,23 @@ class MySQLService {
   MySQLService._();
 
   late Dio _dio;
-  
-  // Your API base URL (we'll set this up)
-  static const String baseUrl = 'https://your-api-domain.com/api';
-  
+
+  // Railway API URL (update this with your actual Railway URL)
+  static const String baseUrl =
+      'https://attendance-api-production-xxxx.up.railway.app/api';
+
   void initialize() {
-    _dio = Dio(BaseOptions(
-      baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    ));
+    _dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl,
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      ),
+    );
   }
 
   // User operations
@@ -40,9 +43,10 @@ class MySQLService {
 
   Future<User?> getUserByUsernameOrEmail(String usernameOrEmail) async {
     try {
-      final response = await _dio.get('/users/search', queryParameters: {
-        'query': usernameOrEmail,
-      });
+      final response = await _dio.get(
+        '/users/search',
+        queryParameters: {'query': usernameOrEmail},
+      );
       if (response.data['user'] != null) {
         return User.fromJson(response.data['user']);
       }
@@ -65,7 +69,10 @@ class MySQLService {
 
   Future<bool> updateUser(User user) async {
     try {
-      final response = await _dio.put('/users/${user.userId}', data: user.toJson());
+      final response = await _dio.put(
+        '/users/${user.userId}',
+        data: user.toJson(),
+      );
       return response.statusCode == 200;
     } catch (e) {
       print('Error updating user: $e');
@@ -87,7 +94,10 @@ class MySQLService {
 
   Future<bool> saveConstituency(Constituency constituency) async {
     try {
-      final response = await _dio.post('/constituencies', data: constituency.toJson());
+      final response = await _dio.post(
+        '/constituencies',
+        data: constituency.toJson(),
+      );
       return response.statusCode == 201;
     } catch (e) {
       print('Error saving constituency: $e');
@@ -114,10 +124,14 @@ class MySQLService {
     try {
       final queryParams = <String, dynamic>{};
       if (constituencyNo != null) queryParams['constituency'] = constituencyNo;
-      if (startDate != null) queryParams['start_date'] = startDate.toIso8601String();
+      if (startDate != null)
+        queryParams['start_date'] = startDate.toIso8601String();
       if (endDate != null) queryParams['end_date'] = endDate.toIso8601String();
 
-      final response = await _dio.get('/attendance', queryParameters: queryParams);
+      final response = await _dio.get(
+        '/attendance',
+        queryParameters: queryParams,
+      );
       final List<dynamic> data = response.data['events'];
       return data.map((json) => AttendanceEvent.fromJson(json)).toList();
     } catch (e) {

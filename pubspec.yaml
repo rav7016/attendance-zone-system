@@ -43,8 +43,9 @@ dependencies:
   # nfc_manager: ^3.3.0  # Temporarily disabled for Android compatibility
   mobile_scanner: ^3.5.6
   
-  # HTTP and networking
+  # HTTP and networking for MySQL API
   http: ^1.1.0
+  dio: ^5.4.0  # Better HTTP client for API calls
   
   # State management
   provider: ^6.1.1

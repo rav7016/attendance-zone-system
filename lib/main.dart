@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'services/database_service.dart';
 import 'services/card_scanner_service.dart';
 import 'services/constituency_data_service.dart';
@@ -10,11 +8,21 @@ import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'providers/app_state_provider.dart';
 
+// Firebase temporarily disabled for web compilation
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // Firebase initialization temporarily disabled
+  // TODO: Re-enable after fixing web compilation issues
+  // try {
+  //   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //   print('Firebase initialized successfully');
+  // } catch (e) {
+  //   print('Firebase initialization failed: $e');
+  // }
 
   // Initialize services
   await DatabaseService.instance.initialize();

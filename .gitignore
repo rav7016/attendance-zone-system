@@ -43,8 +43,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Web related
-/web/
+# Web related (commented out to include web files for deployment)
+# /web/
 
 # Firebase related
 .firebase/

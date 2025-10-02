@@ -20,6 +20,9 @@ jobs:
         flutter-version: '3.35.5'
         channel: 'stable'
         
+    - name: Configure for web
+      run: flutter create . --platforms web
+      
     - name: Get dependencies
       run: flutter pub get
       

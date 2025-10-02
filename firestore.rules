@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection - only authenticated users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Allow admins to read all users
+      allow read: if request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Constituencies - read-only for all authenticated users
+    match /constituencies/{constituencyId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Persons - authenticated users can read/write
+    match /persons/{personId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Cards - authenticated users can read/write
+    match /cards/{cardId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Zones - authenticated users can read/write
+    match /zones/{zoneId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Readers - authenticated users can read/write
+    match /readers/{readerId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Attendance events - authenticated users can read/write
+    match /attendance_events/{eventId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Auth snapshots - authenticated users can read/write
+    match /auth_snapshots/{snapshotId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

@@ -41,13 +41,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'your-web-api-key',
-    appId: 'your-web-app-id',
-    messagingSenderId: 'your-sender-id',
-    projectId: 'your-project-id',
-    authDomain: 'your-project-id.firebaseapp.com',
-    storageBucket: 'your-project-id.appspot.com',
-    measurementId: 'your-measurement-id',
+    apiKey: 'AIzaSyDummy-Key-For-Web-Deployment',
+    appId: '1:123456789:web:abcdef123456',
+    messagingSenderId: '123456789',
+    projectId: 'attendance-be289',
+    authDomain: 'attendance-be289.firebaseapp.com',
+    storageBucket: 'attendance-be289.appspot.com',
+    measurementId: 'G-XXXXXXXXXX',
   );
 
   static const FirebaseOptions android = FirebaseOptions(

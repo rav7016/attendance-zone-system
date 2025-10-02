@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/database_service.dart';
+import 'services/mysql_service.dart';
 import 'services/card_scanner_service.dart';
 import 'services/constituency_data_service.dart';
 import 'services/auth_service.dart';
@@ -11,13 +12,15 @@ import 'providers/app_state_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Your app uses Hive database - which is already multi-user capable!
-  // Multiple users can login with different accounts on the same system
-
   // Initialize services
   await DatabaseService.instance.initialize();
+  MySQLService.instance.initialize(); // Initialize PostgreSQL connection
   await CardScannerService.instance.initialize();
   await AuthService.instance.initialize();
+
+  // Test database connection
+  final isConnected = await MySQLService.instance.isConnected();
+  print(isConnected ? '🗄️ PostgreSQL database connected!' : '⚠️ Using local Hive database');
 
   // Initialize constituency data
   await ConstituencyDataService.initializeConstituencyData();

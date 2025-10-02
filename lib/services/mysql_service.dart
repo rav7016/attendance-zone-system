@@ -11,9 +11,8 @@ class MySQLService {
 
   late Dio _dio;
 
-  // Railway API URL (update this with your actual Railway URL)
-  static const String baseUrl =
-      'https://attendance-api-production-xxxx.up.railway.app/api';
+  // Render API URL - Your live PostgreSQL database
+  static const String baseUrl = 'https://attendance-api-nqde.onrender.com/api';
 
   void initialize() {
     _dio = Dio(
